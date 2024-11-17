@@ -29,11 +29,24 @@ npm -v
 
 Esto debería mostrar las versiones instaladas de `Node.js` y npm.
 
-## Paquetes
-En el proyecto, hemos instalado varias dependencias para que el backend funcione correctamente. No es necesario subir la carpeta node_modules al repositorio, ya que contiene los paquetes descargados, los cuales pueden ocupar mucho espacio. Además, al agregar más paquetes, esta carpeta puede crecer significativamente.
+# Ejecutar programa
+## frontend
+### Instalar la extensión Live Server
+1. Abre Visual Studio Code.
+2. Ve a la pestaña Extensiones (icono de cuadrado en el lado izquierdo o presiona Ctrl+Shift+X).
+3. Busca Live Server y haz clic en Install.
+4. Navega a la carpeta del frontend desde Visual Studio Code:
+* Abre la carpeta del proyecto y selecciona la carpeta frontend.
+* El archivo principal es normalmente index.html, y suele estar en la carpeta raíz o dentro de public.
+* Verifica que el archivo index.html esté ubicado correctamente.
+* Si tienes subcarpetas como src o public, asegúrate de que el contenido del frontend esté accesible desde index.html.
+5. Ejecutar Live Server:
+* Haz clic derecho sobre el archivo index.html en el explorador de archivos de Visual Studio Code.
+* Selecciona Open with Live Server.
 
-Por ello, utilizamos un archivo .gitignore para evitar subir la carpeta node_modules al repositorio. Solo se mantiene el archivo package.json, que es donde se definen todas las dependencias necesarias para ejecutar el proyecto.
+Esto abrirá el proyecto en tu navegador predeterminado, ejecutándose en una URL como http://127.0.0.1:5500.
 
+## backend
 ### Pasos para instalar las dependencias
 Si has clonado el proyecto o descargado una nueva copia del repositorio, necesitarás instalar todas las dependencias del proyecto antes de ejecutarlo. Para hacer esto, sigue estos pasos:
 
@@ -54,8 +67,20 @@ Ejecuta el siguiente comando en la terminal para descargar e instalar todos los 
 ```
 npm install
 ```
-Este comando descargará todas las dependencias especificadas y las colocará en la carpeta node_modules.
+Este comando descargará todas las dependencias especificadas (del package.json) y las colocará en la carpeta node_modules.
 Nota: Esta carpeta no debe ser subida al repositorio, ya que su contenido puede variar según el entorno o el sistema operativo.
+
+## Corer el backend
+
+Para correr el backend, nos tenemos que posicionar en la carpeta backend y colocar el siguiente comando
+```
+node app.js
+```
+
+## Paquetes
+En el proyecto, hemos instalado varias dependencias para que el backend funcione correctamente. No es necesario subir la carpeta node_modules al repositorio, ya que contiene los paquetes descargados, los cuales pueden ocupar mucho espacio. Además, al agregar más paquetes, esta carpeta puede crecer significativamente.
+
+Por ello, utilizamos un archivo .gitignore para evitar subir la carpeta node_modules al repositorio. Solo se mantiene el archivo package.json, que es donde se definen todas las dependencias necesarias para ejecutar el proyecto.
 
 ## node_modules
 La carpeta node_modules contiene todas las dependencias necesarias para que el backend funcione correctamente. Esta carpeta es generada automáticamente cuando ejecutas npm install. No necesitas subirla al repositorio, ya que todo lo que contiene está especificado en package.json y puede ser recuperado ejecutando npm install.
