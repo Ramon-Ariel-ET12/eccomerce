@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Navegación</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo">
+            </div>
+            <ul class="menu">
+                <li><a href="#">CALZADO</a>
+                    <ul class="submenu">
+                        <li><a href="#">Deportivos</a></li>
+                        <li><a href="#">Casuales</a></li>
+                        <li><a href="#">Botas</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">MUJER</a>
+                    <ul class="submenu">
+                        <li><a href="#">Ropa</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">HOMBRE</a>
+                    <ul class="submenu">
+                        <li><a href="#">Ropa</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">NIÑOS</a>
+                    <ul class="submenu">
+                        <li><a href="#">Ropa</a></li>
+                        <li><a href="#">Calzado</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar">
+                <button onclick="search()"><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+    <script src="script.js"></script>
+    <section class="contenedor">
+        <div class="contenedor-items">
+
+            <div class="item">
+                <span class="titulo-item">Box Engasse</span>
+                <img src="img/zapa1.png" alt="" class="img-item">
+                <span class="precio-item">$150.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            
+            <div class="item">
+                <span class="titulo-item">Horse</span>
+                <img src="img/zapa2.png" alt="" class="img-item">
+                <span class="precio-item">$250.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Knock Nap</span>
+                <img src="img/zapa3.png" alt="" class="img-item">
+                <span class="precio-item">$65.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">La Night</span>
+                <img src="img/zapa4.png" alt="" class="img-item">
+                <span class="precio-item">$180.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Silver All</span>
+                <img src="img/zapa5.png" alt="" class="img-item">
+                <span class="precio-item">$75.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Skin Glam</span>
+                <img src="img/zapa6.png" alt="" class="img-item">
+                <span class="precio-item">$100.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Midimix</span>
+                <img src="img/zapa7.png" alt="" class="img-item">
+                <span class="precio-item">$94.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Sir Blue</span>
+                <img src="img/zapa8.png" alt="" class="img-item">
+                <span class="precio-item">$75.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Middlesteel</span>
+                <img src="img/zapa9.png" alt="" class="img-item">
+                <span class="precio-item">$99.800</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Max steels</span>
+                <img src="img/zapa10.png" alt="" class="img-item">
+                <span class="precio-item">$80.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Nuria</span>
+                <img src="img/zapa11.png" alt="" class="img-item">
+                <span class="precio-item">$110.500</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Homer</span>
+                <img src="img/zapa12.png" alt="" class="img-item">
+                <span class="precio-item">$65.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Rose</span>
+                <img src="img/zapa13.png" alt="" class="img-item">
+                <span class="precio-item">$88.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Rako</span>
+                <img src="img/zapa14.png" alt="" class="img-item">
+                <span class="precio-item">$99.800</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+
+        </div>
+        
+       
+        <!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
+            </div>
+
+            <div class="carrito-items">
+                <!-- 
+                <div class="carrito-item">
+                    <img src="img/boxengasse.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Box Engasse</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$15.000,00</span>
+                    </div>
+                   <span class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </span>
+                </div>
+                <div class="carrito-item">
+                    <img src="img/skinglam.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Skin Glam</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="3" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$18.000,00</span>
+                    </div>
+                   <button class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </button>
+                </div>
+                 -->
+            </div>
+            
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        $120.000,00
+                    </span>
+                </div>
+                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Configuración de las cookies</a>
+            <span>|</span>
+            <a href="#">Nuestros Datos</a>
+            <span>|</span>
+            <a href="#">Términos y Condiciones</a>
+            <span>|</span>
+            <a href="#">Política de Cookies</a>
+            <span>|</span>
+            <a href="#">Política de Privacidad</a>
+            <span>|</span>
+            <a href="#">Seleccionar País</a>
+            <span>|</span>
+            <a href="#">Reclamos</a>
+        </div>
+        <div class="footer-copy">
+            © 2024 Empresa Argentina
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
