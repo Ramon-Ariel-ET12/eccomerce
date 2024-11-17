@@ -1,4 +1,4 @@
--- Active: 1726541820216@@127.0.0.1@3306
+-- Active: 1731857832734@@127.0.0.1@3306@eccomerce
 CREATE DATABASE eccomerce;
 
 
@@ -31,11 +31,13 @@ CREATE TABLE usuario (
 
 CREATE TABLE producto (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    -- BLOB para almacenar imágenes como bytes 
-    imagen_byte BLOB,
+    -- LONGBLOB para almacenar imágenes como bytes 
+    imagen_byte LONGBLOB,
+    imagen_tipo VARCHAR(50) NOT NULL,
     nombre_producto VARCHAR(100) NOT NULL,
     -- TEXT indica que puede tener cualquier longitud, osea cualquier cantidad de caracteres
     descripcion TEXT,
+    precio_item DECIMAL(65, 2) NOT NULL,
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE
 );

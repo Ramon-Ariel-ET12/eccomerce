@@ -31,11 +31,6 @@
             <button type="submit" class="login-btn">Iniciar Sesión</button>
         </form>
         <div id="errorMessage" style="color: red; display: none;"></div>
-    </div>
-
-    <div id="usuariodatos">
-
-    </div>
     <script>
 /*         document.addEventListener('DOMContentLoaded', function () {
         }); */
@@ -77,7 +72,7 @@
                     // Si la respuesta es exitosa, mostramos un mensaje de éxito
                     alert('Login exitoso');
                     console.log(data);
-                    document.getElementById('usuariodatos').innerHTML = `<p>${data.nombre}</p>`;	
+                    window.location.href = 'index.html';
                 } else {
                     // Si hay un error en las credenciales, mostramos el mensaje de error recibido
                     document.getElementById('errorMessage').textContent = data.error;
