@@ -3,7 +3,6 @@ async function loadProductos() {
     try {
         const response = await fetch('http://localhost:80/productos');
         const productos = await response.json();
-        console.log('Productos obtenidos:', productos);
 
         if (!response.ok) {
             throw new Error(productos.error || 'Error al cargar los productos');
@@ -15,7 +14,6 @@ async function loadProductos() {
         // Generar el HTML para cada producto
         let productosHtml = '';
         productos.forEach(producto => {
-            console.log('Procesando producto:', producto);
             var precio = parseFloat(producto.precio_item).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
             productosHtml += `
                 <div class="item">

@@ -85,9 +85,9 @@ header {
 }
 
 .menu p {
+    color: var(--text-color);
     margin: 0;
     font-size: var(--font-size-base);
-    color: var(--divider-color);
 }
 
 body {
