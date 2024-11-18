@@ -14,13 +14,15 @@ async function loadProductos() {
         // Generar el HTML para cada producto
         let productosHtml = '';
         productos.forEach(producto => {
-            var precio = parseFloat(producto.precio_item).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+            var precio = parseFloat(producto.precio_item).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             productosHtml += `
-                <div class="item">
+                <div class="item" data-id="${producto.id}">
                     <span class="titulo-item">${producto.nombre_producto}</span>
                     <img src="data:${producto.imagen_tipo};base64,${producto.imagen_byte}" alt="${producto.nombre_producto}" class="img-item">
                     <span class="precio-item">$${precio}</span>
-                    <button class="boton-item" data-id="${producto.id}">Agregar al Carrito</button>
+                    <p class="detalle-item" style="display: none;">${producto.descripcion}</p>
+                    <button class="descripcion">Ver descripción</button>
+                    <button class="boton-item">Agregar al Carrito</button>
                 </div>
             `;
         });
@@ -29,9 +31,13 @@ async function loadProductos() {
         container.innerHTML = productosHtml;
 
         // Agregar eventos a los botones "Agregar al Carrito"
+        const verDescripcion = document.getElementsByClassName('descripcion');
         const botonesAgregarAlCarrito = document.getElementsByClassName('boton-item');
         for (let button of botonesAgregarAlCarrito) {
             button.addEventListener('click', agregarAlCarritoClicked);
+        }
+        for (let detalle of verDescripcion) {
+            detalle.addEventListener('click', Verdetalle);
         }
     } catch (err) {
         console.error('Error:', err.message);
@@ -41,13 +47,29 @@ async function loadProductos() {
 }
 
 // Función para manejar el evento de agregar productos al carrito
+function Verdetalle(event) {
+    const button = event.target;
+    const item = button.parentElement;
+
+    const fondooscuro = document.getElementsByClassName('fondooscuro')[0];
+    const descripcion = item.getElementsByClassName('detalle-item')[0].innerText;
+    const id = item.getAttribute('data-id');
+
+    if (fondooscuro) {
+        fondooscuro.style.display = 'block';
+
+        // Accede al elemento detalle y actualiza su contenido
+        const detalle = fondooscuro.getElementsByClassName('detalle')[0];
+        detalle.querySelector('p').innerText = descripcion;
+    }
+}
 function agregarAlCarritoClicked(event) {
     const button = event.target;
     const item = button.parentElement;
     const titulo = item.getElementsByClassName('titulo-item')[0].innerText;
     const precio = item.getElementsByClassName('precio-item')[0].innerText;
     const imagenSrc = item.getElementsByClassName('img-item')[0].src;
-    const id = button.getAttribute('data-id'); // Obtener el ID del producto
+    const id = item.getAttribute('data-id'); // Obtener el ID del producto desde el atributo del contenedor
 
     console.log(`Agregando producto al carrito: ID=${id}, Título=${titulo}, Precio=${precio}, Imagen=${imagenSrc}`);
 

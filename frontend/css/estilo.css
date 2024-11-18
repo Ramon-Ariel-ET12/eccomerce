@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
 /* Definición de variables globales */
 :root {
     --color-fondo: #ffffff;
@@ -75,7 +77,7 @@ body {
 header h1 {
     text-align: center;
     font-size: 35px;
-    color: #fff;
+    color: var(--color-fondo);
     padding: 30px 0;
 }
 
@@ -119,7 +121,7 @@ header h1 {
 /* Estilo de la imagen dentro de cada item */
 .contenedor .contenedor-items .item .img-item {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: cover;
     border-radius: var(--borde-radius);
     margin-bottom: 15px;
@@ -143,13 +145,14 @@ header h1 {
 }
 
 /* Estilo del botón dentro de cada item */
-.contenedor .contenedor-items .item .boton-item {
+.contenedor .contenedor-items .item .boton-item,
+.descripcion {
     display: block;
     width: 100%;
     margin: 0 auto;
     padding: 10px;
     background-color: var(--color-secundario);
-    color: #fff;
+    color: var(--color-fondo);
     text-align: center;
     font-weight: bold;
     border-radius: var(--borde-radius);
@@ -157,8 +160,35 @@ header h1 {
     transition: background-color 0.3s ease;
 }
 
+
+.fondooscuro {
+    display: none;
+    z-index: 999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #0000007c;
+    width: 200vh;
+    height: 200vh;
+    transform: translate(-50%, -50%);
+}
+
+.detalle {
+    top: 50%;
+    left: 50%;
+    z-index: 99999;
+    background: var(--color-fondo);
+    position: fixed;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    padding: 20px;
+    width: 300px;
+    height: auto;
+}
+
 /* Estilo del botón al hacer hover */
-.contenedor .contenedor-items .item .boton-item:hover {
+.contenedor .contenedor-items .item .boton-item:hover,
+.descripcion:hover {
     color: #000;
     background-color: darken(var(--color-secundario), 10%);
 }
@@ -185,10 +215,20 @@ header h1 {
     opacity: 0;
 }
 
+.carrito .carrito-item-detalles {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    text-align: left;
+}
+
 /* Estilo del header dentro del carrito */
 .carrito .header-carrito {
     background-color: var(--color-secundario);
-    color: #fff;
+    color: var(--color-fondo);
     text-align: center;
     padding: 30px 0;
 }
@@ -196,24 +236,21 @@ header h1 {
 /* Estilo de los items dentro del carrito */
 .carrito .carrito-item {
     display: flex;
-    align-items: center;
     position: relative;
     border-bottom: 1px solid #666;
     padding: var(--padding-standard);
     background-color: var(--color-fondo);
 }
 
-/* Estilo de la imagen dentro de cada item del carrito */
-.carrito .carrito-item img {
-    margin-right: 20px;
-}
 
 /* Estilo del título de cada item en el carrito */
-.carrito .carrito-item .carrito-item-titulo {
+.carrito .carrito-item-detalles .carrito-item-titulo {
     font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 16px;
     text-transform: uppercase;
+    margin-bottom: 5px;
 }
+
 
 /* Estilo del selector de cantidad en el carrito */
 .carrito .carrito-item .selector-cantidad {
@@ -244,10 +281,10 @@ header h1 {
     cursor: pointer;
 }
 
-/* Estilo del precio dentro de cada item en el carrito */
-.carrito .carrito-item .carrito-item-precio {
+.carrito .carrito-item-detalles .carrito-item-precio {
     font-weight: bold;
-    font-size: 18px;
+    color: #333;
+    margin-top: 5px;
 }
 
 /* Estilo del botón de eliminar dentro de cada item en el carrito */
@@ -286,7 +323,7 @@ header h1 {
     width: 100%;
     border: none;
     background: var(--color-secundario);
-    color: #fff;
+    color: var(--color-fondo);
     border-radius: 5px;
     font-size: 18px;
     padding: 20px;

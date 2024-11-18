@@ -54,6 +54,13 @@
         </div>
     </section>
 
+    <div class="fondooscuro">
+        <div class="detalle">
+            <i role="button" style="cursor: pointer;" class="fas fa-times"></i>
+            <h1>Descripción</h1>
+            <p>asd</p>
+        </div>
+    </div>
     <footer class="footer">
         <div class="footer-links">
             <a href="#">Configuración de las cookies</a>
@@ -97,11 +104,23 @@
         // Agregar el evento onchange para ejecutar la función de filtrado
         searchInput.addEventListener('input', filtrarProductos);
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const closeButton = document.querySelector('.fondooscuro .fas.fa-times');
+
+            if (closeButton) {
+                closeButton.addEventListener('click', function () {
+                    const fondooscuro = document.getElementsByClassName('fondooscuro')[0];
+                    if (fondooscuro) {
+                        fondooscuro.style.display = 'none'; // Oculta el fondo oscuro
+                    }
+                });
+            }
+        });
+
     </script>
     <script src="./js/productos.js"></script>
     <script src="./js/Autorizacion.js"></script>
     <script src="./js/carrito.js"></script>
 
 </body>
-
 </html>
