@@ -6,48 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Navegación</title>
     <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/NavBar.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="img/logo.png" alt="Logo">
+                <img src="img/Icon.png" alt="Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar">
             </div>
             <ul class="menu">
                 <a href="/frontend/subirproducto.html">Subir productos</a>
-                <li><a href="#">CALZADO</a>
-                    <ul class="submenu">
-                        <li><a href="#">Deportivos</a></li>
-                        <li><a href="#">Casuales</a></li>
-                        <li><a href="#">Botas</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">MUJER</a>
-                    <ul class="submenu">
-                        <li><a href="#">Ropa</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">HOMBRE</a>
-                    <ul class="submenu">
-                        <li><a href="#">Ropa</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">NIÑOS</a>
-                    <ul class="submenu">
-                        <li><a href="#">Ropa</a></li>
-                        <li><a href="#">Calzado</a></li>
-                    </ul>
-                </li>
+                <a href="./login.html">Cerrar sesión</a>
+                <p>¡Bienvenido [Nombre de usuario]!</p>
             </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar">
-                <button onclick="search()"><i class="fas fa-search"></i></button>
-            </div>
         </nav>
     </header>
+
     <section class="contenedor" style="height: 100vh;">
         <div class="contenedor-items" id="productos-container">
             <!-- Acá se cargan los productos -->
@@ -62,38 +40,6 @@
             </div>
 
             <div class="carrito-items">
-                <!-- 
-                    <div class="carrito-item">
-                        <img src="img/boxengasse.png" width="80px" alt="">
-                        <div class="carrito-item-detalles">
-                            <span class="carrito-item-titulo">Box Engasse</span>
-                            <div class="selector-cantidad">
-                                <i class="fa-solid fa-minus restar-cantidad"></i>
-                                <input type="text" value="1" class="carrito-item-cantidad" disabled>
-                                <i class="fa-solid fa-plus sumar-cantidad"></i>
-                            </div>
-                            <span class="carrito-item-precio">$15.000,00</span>
-                        </div>
-                        <span class="btn-eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </span>
-                    </div>
-                    <div class="carrito-item">
-                        <img src="img/skinglam.png" width="80px" alt="">
-                        <div class="carrito-item-detalles">
-                            <span class="carrito-item-titulo">Skin Glam</span>
-                            <div class="selector-cantidad">
-                                <i class="fa-solid fa-minus restar-cantidad"></i>
-                                <input type="text" value="3" class="carrito-item-cantidad" disabled>
-                                <i class="fa-solid fa-plus sumar-cantidad"></i>
-                            </div>
-                            <span class="carrito-item-precio">$18.000,00</span>
-                        </div>
-                        <button class="btn-eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                    -->
             </div>
 
             <div class="carrito-total">
@@ -108,7 +54,7 @@
         </div>
     </section>
 
-    <footer class="footer" style="bottom: 0;">
+    <footer class="footer">
         <div class="footer-links">
             <a href="#">Configuración de las cookies</a>
             <span>|</span>
@@ -129,6 +75,29 @@
         </div>
     </footer>
 
+    <script>
+        const searchInput = document.querySelector('.search-bar input');
+        const productosContainer = document.getElementById('productos-container');
+
+        function filtrarProductos() {
+            const query = searchInput.value.toLowerCase();
+            const productos = productosContainer.querySelectorAll('.item');
+
+            productos.forEach(producto => {
+                const nombreProducto = producto.querySelector('.titulo-item').textContent.toLowerCase();
+
+                if (nombreProducto.includes(query)) {
+                    producto.style.display = 'block'; // Mostrar el producto
+                } else {
+                    producto.style.display = 'none'; // Ocultar el producto
+                }
+            });
+        }
+
+        // Agregar el evento onchange para ejecutar la función de filtrado
+        searchInput.addEventListener('input', filtrarProductos);
+
+    </script>
     <script src="./js/productos.js"></script>
     <script src="./js/carrito.js"></script>
 

@@ -1,0 +1,133 @@
+:root {
+    ----color-primary: #1a1a1a;
+    --color-secondary: #ff6f61;
+    --text-color: white;
+    --link-hover-color: #e85a4f;
+    --divider-color: rgba(255, 255, 255, 0.2);
+    --font-size-base: 1rem;
+    --padding-base: 1rem;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(----color-primary);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: var(--padding-base) 2rem;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    max-width: 400px;
+    margin-top: 1rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--divider-color);
+    border-radius: 4px;
+    font-size: var(--font-size-base);
+}
+
+.search-bar button {
+    background-color: var(--color-secondary);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+}
+
+.search-bar button:hover {
+    background-color: var(--link-hover-color);
+}
+
+.menu {
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #333;
+}
+
+.menu p {
+    margin: 0;
+    font-size: var(--font-size-base);
+    color: var(--divider-color);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+}
+
+footer {
+    background-color: var(----color-primary);
+    color: var(--text-color);
+    text-align: center;
+    padding: var(--padding-base) 2rem;
+    border-top: 1px solid var(--divider-color);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: var(--font-size-base);
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--link-hover-color);
+}
+
+.footer-links span {
+    color: var(--divider-color);
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: var(--divider-color);
+}

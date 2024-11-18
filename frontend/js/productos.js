@@ -1,36 +1,36 @@
+// Función para cargar los productos desde el backend y mostrarlos en la interfaz de usuario
 async function loadProductos() {
     try {
-        // Fetch products from the backend
         const response = await fetch('http://localhost:80/productos');
         const productos = await response.json();
-        console.log('Fetched productos:', productos); // Log the fetched products
+        console.log('Productos obtenidos:', productos);
 
         if (!response.ok) {
             throw new Error(productos.error || 'Error al cargar los productos');
         }
 
-        // Container to replace with products
+        // Contenedor donde se reemplazará el contenido con los productos
         const container = document.getElementById('productos-container');
 
-        // Generate HTML for each product, maintaining the structure of the static design
+        // Generar el HTML para cada producto
         let productosHtml = '';
         productos.forEach(producto => {
-            console.log('Processing producto:', producto); // Log each product
-            // Use the base64 image directly from the producto object
+            console.log('Procesando producto:', producto);
+            var precio = parseFloat(producto.precio_item).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
             productosHtml += `
                 <div class="item">
                     <span class="titulo-item">${producto.nombre_producto}</span>
                     <img src="data:${producto.imagen_tipo};base64,${producto.imagen_byte}" alt="${producto.nombre_producto}" class="img-item">
-                    <span class="precio-item">$${producto.precio_item}</span>
+                    <span class="precio-item">$${precio}</span>
                     <button class="boton-item" data-id="${producto.id}">Agregar al Carrito</button>
                 </div>
             `;
         });
 
-        // Replace the container's HTML with the generated content
+        // Reemplazar el HTML del contenedor con el contenido generado
         container.innerHTML = productosHtml;
 
-        // Add event listeners to the "Agregar al Carrito" buttons
+        // Agregar eventos a los botones "Agregar al Carrito"
         const botonesAgregarAlCarrito = document.getElementsByClassName('boton-item');
         for (let button of botonesAgregarAlCarrito) {
             button.addEventListener('click', agregarAlCarritoClicked);
@@ -42,20 +42,20 @@ async function loadProductos() {
     }
 }
 
-// Function to handle adding items to the cart
+// Función para manejar el evento de agregar productos al carrito
 function agregarAlCarritoClicked(event) {
     const button = event.target;
     const item = button.parentElement;
     const titulo = item.getElementsByClassName('titulo-item')[0].innerText;
     const precio = item.getElementsByClassName('precio-item')[0].innerText;
     const imagenSrc = item.getElementsByClassName('img-item')[0].src;
-    const id = button.getAttribute('data-id'); // Get the product ID
+    const id = button.getAttribute('data-id'); // Obtener el ID del producto
 
-    console.log(`Adding product to cart: ID=${id}, Title=${titulo}, Price=${precio}, Image=${imagenSrc}`);
+    console.log(`Agregando producto al carrito: ID=${id}, Título=${titulo}, Precio=${precio}, Imagen=${imagenSrc}`);
 
-    agregarItemAlCarrito(titulo, precio, imagenSrc, id); // Pass the ID to the function
+    agregarItemAlCarrito(titulo, precio, imagenSrc, id); // Pasar el ID a la función
     hacerVisibleCarrito();
 }
 
-// Load products when the page loads
+// Cargar los productos cuando la página se carga
 loadProductos();
