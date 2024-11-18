@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("Usuario");
         console.log("Usuario eliminado del localStorage.");
     });
-
+    if (data.rol === "Administrador") {
+        document.getElementById('nomostrar').style.display = 'block';
+    }
     const perfilElement = document.getElementById("perfil");
     if (perfilElement) {
         perfilElement.textContent = `¡Bienvenido ${data.nombre_usuario}!`;

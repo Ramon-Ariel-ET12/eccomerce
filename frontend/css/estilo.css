@@ -348,3 +348,7 @@ header h1 {
     height: calc(100% - 150px);
     overflow-y: scroll;
 }
+
+#nomostrar {
+    display: none;
+}
