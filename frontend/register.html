@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/fondo.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="Nombre">Nombre</label>
+                <input type="text" id="Nombre" name="Nombre" required />
+            </div>
+            <div class="input-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required />
+            </div>
+            <div class="input-group">
+                <label for="nombre_usuario">nombre de usuario</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" required />
+            </div>
+            <div class="input-group">
+                <label for="Correo">Correo</label>
+                <input type="email" id="Correo" name="Correo" required />
+            </div>
+            <div class="input-group">
+                <label for="Clave">Clave</label>
+                <input type="password" id="Clave" name="Clave" required />
+            </div>
+            <button type="submit" class="login-btn" onclick="registerUser()">Register</button>
+            <div id="message"></div>
+            <a href="./login.html">Tengo una cuenta</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const Nombre = document.getElementById("Nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const nombre_usuario = document.getElementById("nombre_usuario").value;
+            const Correo = document.getElementById("Correo").value;
+            const Clave = document.getElementById("Clave").value;
+
+            const messageEl = document.getElementById("message");
+            messageEl.textContent = "";
+
+            if (!Nombre || !apellido || !nombre_usuario || !Correo || !Clave) {
+                messageEl.textContent = "Por favor complete todos los campos.";
+                messageEl.style.color = "red";
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:80/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ Nombre, apellido, nombre_usuario, Correo, Clave }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    messageEl.textContent = result.message || "Registro exitoso";
+                    messageEl.style.color = "green";
+                    document.location.href = './login.html';
+                } else {
+                    const error = await response.json();
+                    messageEl.textContent = error.error || "Error al registrar.";
+                    messageEl.style.color = "red";
+                }
+            } catch (err) {
+                console.error("Error:", err);
+                messageEl.textContent = "Error al conectar con el servidor.";
+                messageEl.style.color = "red";
+            }
+        });
+    </script>
+</body>
+
+</html>

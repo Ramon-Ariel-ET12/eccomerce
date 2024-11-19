@@ -17,6 +17,7 @@ async function loadProductos() {
             var precio = parseFloat(producto.precio_item).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             productosHtml += `
                 <div class="item" data-id="${producto.id}">
+                    <button class="fas fa-times eliminar" ></button>
                     <span class="titulo-item">${producto.nombre_producto}</span>
                     <img src="data:${producto.imagen_tipo};base64,${producto.imagen_byte}" alt="${producto.nombre_producto}" class="img-item">
                     <span class="precio-item">$${precio}</span>
@@ -31,8 +32,12 @@ async function loadProductos() {
         container.innerHTML = productosHtml;
 
         // Agregar eventos a los botones "Agregar al Carrito"
-        const verDescripcion = document.getElementsByClassName('descripcion');
+        const eliminar = document.getElementsByClassName('eliminar');
         const botonesAgregarAlCarrito = document.getElementsByClassName('boton-item');
+        const verDescripcion = document.getElementsByClassName('descripcion');
+        for (let eliminando of eliminar) {
+            eliminando.addEventListener('click', eliminarProducto);
+        }
         for (let button of botonesAgregarAlCarrito) {
             button.addEventListener('click', agregarAlCarritoClicked);
         }
@@ -47,11 +52,50 @@ async function loadProductos() {
 }
 
 // Función para manejar el evento de agregar productos al carrito
+function eliminarProducto(event) {
+    const button = event.target;
+    const item = button.parentElement;
+    const producto = item.getElementsByClassName('titulo-item')[0].innerText;
+    const id_producto = item.getAttribute('data-id'); // Obtener el ID del producto desde el atributo del contenedor
+
+    const fondooscuro = document.getElementsByClassName('fondooscuro')[0];
+    if (fondooscuro) {
+        fondooscuro.style.display = 'block';
+
+        // Accede al elemento detalle y actualiza su contenido
+        const detalle = fondooscuro.getElementsByClassName('contendidodetalle')[0];
+        detalle.innerHTML = `<h1>¿Estás seguro de eliminar ${producto}</h1>
+<p id="mensaje">Por favor, elige una opción:</p>
+<button id="eliminar">Si eliminar</button>
+<br>
+<button id="noeliminar">No eliminar</button>`;
+    }
+    document.getElementById("eliminar").addEventListener("click", async (event) => {
+        const response = await fetch('http://localhost:80/eliminarproducto', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_producto }), // Enviamos el ID del producto en el cuerpo de la solicitud
+        });
+        if (response.ok) {
+            document.location.reload();
+        }
+        else {
+            alert('Error al eliminar el producto');
+        }
+    });
+    document.getElementById("noeliminar").addEventListener("click", (event) => {
+        fondooscuro.style.display = 'none';
+    });
+}
+
 function Verdetalle(event) {
     const button = event.target;
     const item = button.parentElement;
 
     const fondooscuro = document.getElementsByClassName('fondooscuro')[0];
+    const titulo = item.getElementsByClassName('titulo-item')[0].innerText;
     const descripcion = item.getElementsByClassName('detalle-item')[0].innerText;
     const id = item.getAttribute('data-id');
 
@@ -59,8 +103,10 @@ function Verdetalle(event) {
         fondooscuro.style.display = 'block';
 
         // Accede al elemento detalle y actualiza su contenido
-        const detalle = fondooscuro.getElementsByClassName('detalle')[0];
-        detalle.querySelector('p').innerText = descripcion;
+        const detalle = fondooscuro.getElementsByClassName('contendidodetalle')[0];
+        detalle.innerHTML = `
+        <h1>Descripción del producto ${titulo}</h1>
+        <p>${descripcion}</p>`;
     }
 }
 function agregarAlCarritoClicked(event) {
@@ -71,7 +117,6 @@ function agregarAlCarritoClicked(event) {
     const imagenSrc = item.getElementsByClassName('img-item')[0].src;
     const id = item.getAttribute('data-id'); // Obtener el ID del producto desde el atributo del contenedor
 
-    console.log(`Agregando producto al carrito: ID=${id}, Título=${titulo}, Precio=${precio}, Imagen=${imagenSrc}`);
 
     agregarItemAlCarrito(titulo, precio, imagenSrc, id); // Pasar el ID a la función
     hacerVisibleCarrito();

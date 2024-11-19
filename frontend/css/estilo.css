@@ -19,58 +19,36 @@
     --box-shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+.fa-shopping-cart{
+    appearance: none;
+    color: var(--color-fondo);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.carrito_detalle{
+    top: 80%;
+    height: min-content;
+    width: 500px;
+    right: 5%;
+    position: absolute;
+    background: transparent;
+}
+.fa-shopping-cart:checked ~ .carrito_detalle{
+    display: none !important;
+}
+
 /* Contenedor principal */
 .contenedor {
     flex: 1;
 }
 
-/* Estilo general del body */
-body {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background-color: var(--color-fondo);
-    font-family: var(--fuente-principal);
-    color: var(--color-texto);
-    position: relative;
-    flex-direction: column;
-    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
-    background-size: cover;
-    background-attachment: fixed;
-    -webkit-animation: slidein 100s;
-    animation: slidein 100s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;
-}
-
-/* Animación del fondo */
-@-webkit-keyframes slidein {
-    from {
-        background-position: top;
-        background-size: 3000px;
-    }
-
-    to {
-        background-position: -100px 0px;
-        background-size: 2750px;
-    }
-}
-
-@keyframes slidein {
-    from {
-        background-position: top;
-        background-size: 3000px;
-    }
-
-    to {
-        background-position: -100px 0px;
-        background-size: 2750px;
-    }
+.eliminar{
+    font-size: 20px;
+    background: none;
+    border: none;
+    width: min-content;
+    cursor: pointer;
 }
 
 /* Estilo del título en el header */
@@ -98,7 +76,7 @@ header h1 {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-gap: 20px;
     width: 100%;
-    height: auto;
+    height: min-content;
     padding: 10px;
     transition: transform 0.3s ease-in-out;
 }
@@ -146,6 +124,8 @@ header h1 {
 
 /* Estilo del botón dentro de cada item */
 .contenedor .contenedor-items .item .boton-item,
+#eliminar,
+#noeliminar,
 .descripcion {
     display: block;
     width: 100%;
@@ -182,12 +162,14 @@ header h1 {
     transform: translate(-50%, -50%);
     margin: auto;
     padding: 20px;
-    width: 300px;
+    width: 40%;
     height: auto;
 }
 
 /* Estilo del botón al hacer hover */
 .contenedor .contenedor-items .item .boton-item:hover,
+#eliminar:hover,
+#noeliminar:hover,
 .descripcion:hover {
     color: #000;
     background-color: darken(var(--color-secundario), 10%);
@@ -199,156 +181,16 @@ header h1 {
     box-shadow: var(--box-shadow-hover);
 }
 
-/* Estilo del carrito fijo en la pantalla */
-.carrito {
-    position: fixed !important;
-    border: 1px solid #666;
-    width: 35%;
-    height: min-content;
-    margin-top: 40px;
-    border-radius: var(--borde-radius);
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    transition: .3s;
-    opacity: 0;
-}
-
-.carrito .carrito-item-detalles {
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    text-align: left;
-}
-
-/* Estilo del header dentro del carrito */
-.carrito .header-carrito {
-    background-color: var(--color-secundario);
-    color: var(--color-fondo);
-    text-align: center;
-    padding: 30px 0;
-}
-
-/* Estilo de los items dentro del carrito */
-.carrito .carrito-item {
-    display: flex;
-    position: relative;
-    border-bottom: 1px solid #666;
-    padding: var(--padding-standard);
-    background-color: var(--color-fondo);
-}
-
-
-/* Estilo del título de cada item en el carrito */
-.carrito .carrito-item-detalles .carrito-item-titulo {
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
-
-
-/* Estilo del selector de cantidad en el carrito */
-.carrito .carrito-item .selector-cantidad {
-    display: inline-block;
-    margin-right: 25px;
-}
-
-/* Estilo de la cantidad de productos en el carrito */
-.carrito .carrito-item .carrito-item-cantidad {
-    border: none;
-    font-size: 18px;
-    background-color: transparent;
-    display: inline-block;
-    width: 30px;
-    padding: 5px;
-    text-align: center;
-}
-
-/* Estilo de los botones de incremento y decremento en el carrito */
-.carrito .carrito-item .selector-cantidad i {
-    font-size: 18px;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #000;
-    cursor: pointer;
-}
-
-.carrito .carrito-item-detalles .carrito-item-precio {
-    font-weight: bold;
-    color: #333;
-    margin-top: 5px;
-}
-
-/* Estilo del botón de eliminar dentro de cada item en el carrito */
-.carrito .carrito-item .btn-eliminar {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    color: #000;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #000;
-    cursor: pointer;
-    background: transparent;
-}
-
-/* Estilo de los botones de pagar en el carrito */
-.carrito-total {
-    background-color: #f3f3f3;
-    padding: 30px;
-}
-
-.carrito-total .fila {
-    display: flex;
-    justify-content: space-between;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.carrito-total .btn-pagar {
-    display: block;
-    width: 100%;
-    border: none;
-    background: var(--color-secundario);
-    color: var(--color-fondo);
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 20px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-/* Estilo de botón de pagar al hacer hover */
-.carrito-total .btn-pagar:hover {
-    border: 1px solid #000;
-    color: #000;
-    background-color: darken(var(--color-secundario), 10%);
-}
-
-/* Estilo de la animación del carrito */
-.carrito.aparece {
-    opacity: 1;
-}
-
-/* Estilo del contenedor del carrito con productos */
-.carrito .container-carrito {
-    height: calc(100% - 150px);
-    overflow-y: scroll;
-}
 
 #nomostrar {
     display: none;
+}
+
+@media (width < 1150px) {
+    .detalle {
+        width: 20%;
+    }
+    .contenedor-items{
+        margin-top: 100px !important;
+    }
 }

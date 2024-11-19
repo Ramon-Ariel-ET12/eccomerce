@@ -5,13 +5,15 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif !important;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
+
 
 .login-container {
     background-color: #fff;
@@ -39,7 +41,9 @@ h2 {
 }
 
 .input-group input,
+.input-group textarea,
 .input-group select {
+    resize: vertical;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;

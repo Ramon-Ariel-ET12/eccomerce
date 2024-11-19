@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Navegación</title>
     <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/fondo.css">
+    <link rel="stylesheet" href="./css/carrito.css">
     <link rel="stylesheet" href="./css/NavBar.css">
 </head>
 
@@ -22,6 +24,27 @@
                 <a href="/frontend/subirproducto.html" id="nomostrar">Subir productos</a>
                 <a href="./login.html" id="logoutButton" role="button">Cerrar sesión</a>
                 <p id="perfil">¡Bienvenido [Nombre de usuario]!</p>
+                <input class="fas fa-shopping-cart" type="checkbox" checked="false" />
+                <div class="carrito_detalle">
+                    <div class="carrito" id="carrito">
+                        <div class="header-carrito">
+                            <h2>Tu Carrito</h2>
+                        </div>
+
+                        <div class="carrito-items">
+                        </div>
+
+                        <div class="carrito-total">
+                            <div class="fila">
+                                <strong>Tu Total</strong>
+                                <span class="carrito-precio-total">
+                                    $120.000,00
+                                </span>
+                            </div>
+                            <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+                        </div>
+                    </div>
+                </div>
             </ul>
         </nav>
     </header>
@@ -33,32 +56,14 @@
         </div>
 
 
-        <!-- Carrito de Compras -->
-        <div class="carrito" id="carrito">
-            <div class="header-carrito">
-                <h2>Tu Carrito</h2>
-            </div>
 
-            <div class="carrito-items">
-            </div>
-
-            <div class="carrito-total">
-                <div class="fila">
-                    <strong>Tu Total</strong>
-                    <span class="carrito-precio-total">
-                        $120.000,00
-                    </span>
-                </div>
-                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
-            </div>
-        </div>
     </section>
 
     <div class="fondooscuro">
         <div class="detalle">
             <i role="button" style="cursor: pointer;" class="fas fa-times"></i>
-            <h1>Descripción</h1>
-            <p>asd</p>
+            <div class="contendidodetalle"></div>
+
         </div>
     </div>
     <footer class="footer">
@@ -116,11 +121,11 @@
                 });
             }
         });
-
     </script>
     <script src="./js/productos.js"></script>
     <script src="./js/Autorizacion.js"></script>
     <script src="./js/carrito.js"></script>
 
 </body>
+
 </html>

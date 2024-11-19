@@ -1,0 +1,161 @@
+/* Estilo del carrito fijo en la pantalla */
+.carrito {
+    border: 1px solid #666;
+    width: 100%;
+    height: min-content;
+    border-radius: var(--borde-radius);
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transition: .3s;
+    display: none;
+}
+
+.carrito .carrito-items {
+    max-height: 387px;
+    overflow-y: auto;
+
+}
+
+.carrito .carrito-item-detalles {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* Estilo del header dentro del carrito */
+.carrito .header-carrito {
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* Estilo de los items dentro del carrito */
+.carrito .carrito-item {
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid #666;
+    padding: var(--padding-standard);
+    background-color: var(--color-fondo);
+}
+
+
+/* Estilo del título de cada item en el carrito */
+.carrito .carrito-item-detalles .carrito-item-titulo {
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+
+/* Estilo del selector de cantidad en el carrito */
+.carrito .carrito-item .selector-cantidad {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+/* Estilo de la cantidad de productos en el carrito */
+.carrito .carrito-item .carrito-item-cantidad {
+    border: none;
+    font-size: 18px;
+    background-color: transparent;
+    display: inline-block;
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+/* Estilo de los botones de incremento y decremento en el carrito */
+.carrito .carrito-item .selector-cantidad button {
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    background: none;
+    text-align: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.carrito .carrito-item-detalles .carrito-item-precio {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Estilo del botón de eliminar dentro de cada item en el carrito */
+.carrito .carrito-item .btn-eliminar {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #000;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* Estilo de los botones de pagar en el carrito */
+.carrito-total {
+    background-color: #f3f3f3;
+    padding: 30px;
+}
+
+.carrito-total .fila {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carrito-total .btn-pagar {
+    display: block;
+    width: 100%;
+    border: none;
+    background: var(--color-secundario);
+    color: var(--color-fondo);
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+/* Estilo de botón de pagar al hacer hover */
+.carrito-total .btn-pagar:hover {
+    border: 1px solid #000;
+    color: #000;
+    background-color: darken(var(--color-secundario), 10%);
+}
+
+/* Estilo de la animación del carrito */
+.carrito.aparece {
+    display: block;
+}
+
+/* Estilo del contenedor del carrito con productos */
+.carrito .container-carrito {
+    height: calc(100% - 150px);
+    overflow-y: scroll;
+}
+
+@media (width < 1150px) {
+    .carrito_detalle {
+        width: 350px;
+        right: 20%;
+    }
+}

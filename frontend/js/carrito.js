@@ -63,10 +63,8 @@ function hacerVisibleCarrito() {
     carritoVisible = true;
     var carrito = document.getElementsByClassName('carrito')[0];
     carrito.style.marginRight = '0';
-    carrito.style.opacity = '1';
+    carrito.style.display = 'block';
 
-    var items = document.getElementsByClassName('contenedor-items')[0];
-    items.style.width = '60%';
 }
 
 // Función que agrega un item al carrito
@@ -90,9 +88,9 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc, id) {
                 <span class="carrito-item-titulo">${titulo}</span>
                 <span class="carrito-item-id" style="display:none;">${id}</span>
                 <div class="selector-cantidad">
-                    <i class="fa-solid fa-minus restar-cantidad"></i>
+                    <button class="fa-solid fa-minus restar-cantidad"></button>
                     <input type="text" value="1" class="carrito-item-cantidad" disabled>
-                    <i class="fas fa-plus sumar-cantidad"></i>
+                    <button class="fas fa-plus sumar-cantidad"></button>
                 </div>
                 <span class="carrito-item-precio">${precio}</span>
             </div>
@@ -156,7 +154,7 @@ function ocultarCarrito() {
     if (carritoItems.childElementCount == 0) {
         var carrito = document.getElementsByClassName('carrito')[0];
         carrito.style.marginRight = '-100%';
-        carrito.style.opacity = '0';
+        carrito.style.display = 'none'; // Oculta el carrito
         carritoVisible = false;
 
         var items = document.getElementsByClassName('contenedor-items')[0];

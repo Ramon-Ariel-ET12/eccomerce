@@ -147,6 +147,60 @@ app.post('/login', async function (req, res) {
     }
 });
 
+
+// para crear el usuario cliente
+app.post('/register', async function (req, res) {
+    // Extraemos las credenciales del cuerpo de la solicitud
+    const { Nombre, apellido, nombre_usuario, Correo, Clave } = req.body;
+
+    // Si alguno de los campos necesarios no está presente, respondemos con un error
+    if (!Nombre || !apellido || !nombre_usuario || !Correo || !Clave) {
+        return res.status(400).json({ error: 'Ingrese los credenciales' });
+    }
+
+    try {
+        // Realizamos una consulta a la base de datos para verificar las credenciales del usuario
+        await db.promise().query(
+            'INSERT INTO usuario (nombre,apellido,nombre_usuario,correo,clave,id_rol) VALUES (?, ?, ?, ?, ?, 2)',
+            [Nombre, apellido, nombre_usuario, Correo, Clave]
+        );
+
+        // Si encontramos un usuario con las credenciales correctas, respondemos con los datos del usuario
+        res.json({ message: 'Register exitoso' });
+        console.log('Register exitoso');
+    } catch (err) {
+        // Si hay un error en la consulta, lo manejamos y respondemos con un error
+        console.error('Error en la consulta:', err);
+        res.status(500).json({ error: 'Error en la consulta de la base de datos' });
+    }
+});
+
+app.post('/eliminarproducto', async function (req, res) {
+    // Extraemos las credenciales del cuerpo de la solicitud
+    const { id_producto } = req.body;
+
+    // Si alguno de los campos necesarios no está presente, respondemos con un error
+    if (!id_producto) {
+        return res.status(400).json({ error: 'Ingrese los credenciales' });
+    }
+
+    try {
+        // Realizamos una consulta a la base de datos para verificar las credenciales del usuario
+        await db.promise().query(
+            'DELETE FROM producto WHERE id = ?',
+            [id_producto]
+        );
+
+        // Si encontramos un usuario con las credenciales correctas, respondemos con los datos del usuario
+        res.json({ message: 'Se elimino exitosamente' });
+        console.log('Se elimino exitosamente');
+    } catch (err) {
+        // Si hay un error en la consulta, lo manejamos y respondemos con un error
+        console.error('Error en la consulta:', err);
+        res.status(500).json({ error: 'Error en la consulta de la base de datos' });
+    }
+});
+
 // Iniciamos el servidor y lo configuramos para escuchar en el puerto especificado
 app.listen(port, function () {
     console.log(`Servidor backend corriendo en http://localhost:${port}`);
