@@ -30,12 +30,16 @@ async function loadProductos() {
 
         // Reemplazar el HTML del contenedor con el contenido generado
         container.innerHTML = productosHtml;
-
+        var usuariojson = localStorage.getItem("Usuario");
+        var usuario = JSON.parse(usuariojson);
         // Agregar eventos a los botones "Agregar al Carrito"
         const eliminar = document.getElementsByClassName('eliminar');
         const botonesAgregarAlCarrito = document.getElementsByClassName('boton-item');
         const verDescripcion = document.getElementsByClassName('descripcion');
         for (let eliminando of eliminar) {
+            if (usuario.rol !== "Administrador") {
+                eliminando.style.display = 'none';
+            }
             eliminando.addEventListener('click', eliminarProducto);
         }
         for (let button of botonesAgregarAlCarrito) {
